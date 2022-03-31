@@ -34,14 +34,14 @@ class MyDrawer extends StatelessWidget {
             child: Text('I want a profile ICON here'),
           ),
           ListTile(
-            title: const Text('Map View'),
+            title: const Text('Map'),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MapView(
-                          title: 'MapView',
+                    builder: (context) => const Map(
+                          title: 'Map',
                         )),
               );
             },
@@ -116,8 +116,8 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class MapView extends StatelessWidget {
-  const MapView({Key? key, required this.title}) : super(key: key);
+class Map extends StatelessWidget {
+  const Map({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -139,7 +139,8 @@ class MapView extends StatelessWidget {
       ),
       endDrawer: MyDrawer(),
       body: const Center(
-        child: Text('Map View Coming Soon'),
+        child: Text('Map Coming Soon'),
+        child: Switch()
       ),
     );
   }
