@@ -127,7 +127,8 @@ class Map extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          onPressed: () =>
+              Navigator.of(context).popUntil((route) => route.isFirst),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
@@ -138,9 +139,35 @@ class Map extends StatelessWidget {
         ),
       ),
       endDrawer: MyDrawer(),
-      body: const Center(
-        child: Text('Map Coming Soon'),
-        child: Switch()
+      body: Column(children: [Text('Map Coming Soon'), MapWidget()]),
+    );
+  }
+}
+
+class MapWidget extends StatefulWidget {
+  const MapWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MapWidget> createState() => _MapState();
+}
+
+class _MapState extends State<MapWidget> {
+  bool isSwitched = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Switch(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+              });
+            },
+          ),
+        ],
       ),
     );
   }
@@ -157,7 +184,8 @@ class Favourites extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          onPressed: () =>
+              Navigator.of(context).popUntil((route) => route.isFirst),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
@@ -186,7 +214,8 @@ class PainAuChocolat extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          onPressed: () =>
+              Navigator.of(context).popUntil((route) => route.isFirst),
         ),
         backgroundColor: Color(0xffffffff),
         iconTheme: IconThemeData(color: Colors.black),
@@ -212,7 +241,8 @@ class Settings extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+          onPressed: () =>
+              Navigator.of(context).popUntil((route) => route.isFirst),
         ),
         backgroundColor: Color(0xffffffff),
         iconTheme: IconThemeData(color: Colors.black),
