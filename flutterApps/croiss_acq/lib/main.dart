@@ -1,20 +1,30 @@
+// importing the dart material library
 import 'package:flutter/material.dart';
 
 void main() {
+  // i think this runs the app?
   runApp(MyApp());
 }
 
+// implements the app
+// extend here allows MyApp to inherit properties and methods from StatelessWidget
 class MyApp extends StatelessWidget {
+  // @override helps to identify inherited methods or variables
+  // that are being replaced in the subclass
   @override
+  // builds the widget
   Widget build(BuildContext context) {
+    // returns a widget that is a material app
     return MaterialApp(
       title: 'CROISSACQ',
+      // theme data for the app
       theme: ThemeData(),
       home: MyHomePage(title: 'MyHomePage'),
     );
   }
 }
 
+// implements a navigation drawer to be added to each screen in the app bar
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,27 +35,37 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
+        // children allows the implementation of multiple child elements
         children: [
+          // the top of the drawer
           const DrawerHeader(
             decoration: BoxDecoration(
+              // make it white
               color: Colors.white,
             ),
             // TODO add profile ICON and link to profile page
             child: Text('I want a profile ICON here'),
           ),
+          // Each ListTile will be a navigation option
           ListTile(
             title: const Text('Map'),
+            // initiates the navigation when tapped
             onTap: () {
+              // pops off the drawer menu screen from the stack
               Navigator.pop(context);
+              // pushes new screen onto the stack - in this case, the map screen
               Navigator.push(
                 context,
+                // replaces the screen with a platform-adaptive transition
                 MaterialPageRoute(
+                    // builds the new screen - in this case, the map screen
                     builder: (context) => const Map(
                           title: 'Map',
                         )),
               );
             },
           ),
+          // for comments on remaining list tiles, see above
           ListTile(
             title: const Text('Favourites'),
             onTap: () {
@@ -91,24 +111,36 @@ class MyDrawer extends StatelessWidget {
   }
 }
 
+// implements the home screen, bottom of the stack?
 class MyHomePage extends StatelessWidget {
+  // key is an identifier for widget, elements, and semantic nodes
+  // a new widget can only update an existing element if the key is the same
+  // the ? makes this key optional
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
+  // builds the home screen
   Widget build(BuildContext context) {
+    // provides the scaffolding for the screen from which to add things
     return Scaffold(
+      // the top app bar
       appBar: AppBar(
+        // colours, TODO can i put these in app theme?
         backgroundColor: Colors.white,
+        // icon colours
         iconTheme: IconThemeData(color: Colors.black),
+        // centering the title
         centerTitle: true,
         title: const Text(
           'CROISSACQ',
           style: TextStyle(color: Color(0xff000000)),
         ),
       ),
-      endDrawer: MyDrawer(),
+      // adding the drawer on the right of the app bar
+      endDrawer: MyDrawer(), // call MyDrawer
+      // body of the home screen
       body: const Center(
         child: Text('Home Page Coming Soon'),
       ),
@@ -116,6 +148,7 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+// implements map screen
 class Map extends StatelessWidget {
   const Map({Key? key, required this.title}) : super(key: key);
 
@@ -126,8 +159,12 @@ class Map extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+          // back button which takes you back to the home screen
+          // icon is a back arrow, located on the left of the app bar
           icon: Icon(Icons.arrow_back),
+          // initiates action when pressed
           onPressed: () =>
+          // pops screens from the stack until we reach the first screen
               Navigator.of(context).popUntil((route) => route.isFirst),
         ),
         backgroundColor: Colors.white,
@@ -139,22 +176,29 @@ class Map extends StatelessWidget {
         ),
       ),
       endDrawer: MyDrawer(),
-      body: Column(children: [Text('Map Coming Soon'), MapWidget()]),
+      body: Column(children: [Text('Map Coming Soon'), MapToggle()]),
     );
   }
 }
 
-class MapWidget extends StatefulWidget {
-  const MapWidget({Key? key}) : super(key: key);
-
+// implements a toggle switch widget for the map widget
+// will toggle between map view and list view
+// must extend stateful widget because this switch has a state
+class MapToggle extends StatefulWidget {
+  const MapToggle({Key? key}) : super(key: key);
   @override
-  State<MapWidget> createState() => _MapState();
+  // implements a starting state and passes it to a hidden class _MapState
+  State<MapToggle> createState() => _MapState();
 }
 
-class _MapState extends State<MapWidget> {
+// the _ at the beginning of the name means this class is hidden
+// bool isSwitched = false; map view
+// bool isSwitched = true; list view
+class _MapState extends State<MapToggle> {
   bool isSwitched = false;
 
   @override
+  // build the widget
   Widget build(BuildContext context) {
     return Center(
       child: Column(
@@ -173,6 +217,7 @@ class _MapState extends State<MapWidget> {
   }
 }
 
+// implements favourites screen
 class Favourites extends StatelessWidget {
   const Favourites({Key? key, required this.title}) : super(key: key);
 
@@ -203,6 +248,7 @@ class Favourites extends StatelessWidget {
   }
 }
 
+// implements pain au chocolat screen
 class PainAuChocolat extends StatelessWidget {
   const PainAuChocolat({Key? key, required this.title}) : super(key: key);
 
@@ -230,6 +276,7 @@ class PainAuChocolat extends StatelessWidget {
   }
 }
 
+// implements settings screen
 class Settings extends StatelessWidget {
   const Settings({Key? key, required this.title}) : super(key: key);
 
