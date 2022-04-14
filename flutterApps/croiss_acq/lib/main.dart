@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'CROISSACQ',
       // theme data for the app
       theme: ThemeData(),
-      home: MyHomePage(title: 'MyHomePage'),
+      home: Home(title: 'Home'),
     );
   }
 }
@@ -47,6 +47,24 @@ class MyDrawer extends StatelessWidget {
             child: Text('I want a profile ICON here'),
           ),
           // Each ListTile will be a navigation option
+          ListTile(
+            title: const Text('Home'),
+            // initiates the navigation when tapped
+            onTap: () {
+              // pops off the drawer menu screen from the stack
+              Navigator.pop(context);
+              // pushes new screen onto the stack - in this case, the map screen
+              Navigator.push(
+                context,
+                // replaces the screen with a platform-adaptive transition
+                MaterialPageRoute(
+                    // builds the new screen - in this case, the map screen
+                    builder: (context) => const Home(
+                          title: 'Home',
+                        )),
+              );
+            },
+          ),
           ListTile(
             title: const Text('Map'),
             // initiates the navigation when tapped
@@ -112,11 +130,11 @@ class MyDrawer extends StatelessWidget {
 }
 
 // implements the home screen, bottom of the stack?
-class MyHomePage extends StatelessWidget {
+class Home extends StatelessWidget {
   // key is an identifier for widget, elements, and semantic nodes
   // a new widget can only update an existing element if the key is the same
   // the ? makes this key optional
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const Home({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -125,26 +143,32 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // provides the scaffolding for the screen from which to add things
     return Scaffold(
-      // the top app bar
-      appBar: AppBar(
-        // colours, TODO can i put these in app theme?
-        backgroundColor: Colors.white,
-        // icon colours
-        iconTheme: IconThemeData(color: Colors.black),
-        // centering the title
-        centerTitle: true,
-        title: const Text(
-          'CROISSACQ',
-          style: TextStyle(color: Color(0xff000000)),
+        // the top app bar
+        appBar: AppBar(
+          // colours, TODO can i put these in app theme?
+          backgroundColor: Colors.white,
+          // icon colours
+          iconTheme: IconThemeData(color: Colors.black),
+          // centering the title
+          centerTitle: true,
+          title: const Text(
+            'CROISSACQ',
+            style: TextStyle(color: Color(0xff000000)),
+          ),
         ),
-      ),
-      // adding the drawer on the right of the app bar
-      endDrawer: MyDrawer(), // call MyDrawer
-      // body of the home screen
-      body: const Center(
-        child: Text('Home Page Coming Soon'),
-      ),
-    );
+        // adding the drawer on the right of the app bar
+        endDrawer: MyDrawer(), // call MyDrawer
+        // body of the home screen
+        body: Center(
+            child: (Column(children: [
+          Text('Home Page Coming Soon'),
+          ElevatedButton(
+            child: Text('Press me!'),
+            onPressed: () {
+              print('Hello');
+            },
+          ),
+        ]))));
   }
 }
 
@@ -157,27 +181,28 @@ class Map extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          // back button which takes you back to the home screen
-          // icon is a back arrow, located on the left of the app bar
-          icon: Icon(Icons.arrow_back),
-          // initiates action when pressed
-          onPressed: () =>
-          // pops screens from the stack until we reach the first screen
-              Navigator.of(context).popUntil((route) => route.isFirst),
+        appBar: AppBar(
+          leading: IconButton(
+            // back button which takes you back to the home screen
+            // icon is a back arrow, located on the left of the app bar
+            icon: Icon(Icons.arrow_back),
+            // initiates action when pressed
+            onPressed: () =>
+                // pops screens from the stack until we reach the first screen
+                Navigator.of(context).popUntil((route) => route.isFirst),
+          ),
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Colors.black),
+          centerTitle: true,
+          title: const Text(
+            'CROISSACQ',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        centerTitle: true,
-        title: const Text(
-          'CROISSACQ',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      endDrawer: MyDrawer(),
-      body: Column(children: [Text('Map Coming Soon'), MapToggle()]),
-    );
+        endDrawer: MyDrawer(),
+        body: Center(
+          child: Column(children: [Text('Map Coming Soon'), MapToggle()]),
+        ));
   }
 }
 
@@ -186,6 +211,7 @@ class Map extends StatelessWidget {
 // must extend stateful widget because this switch has a state
 class MapToggle extends StatefulWidget {
   const MapToggle({Key? key}) : super(key: key);
+
   @override
   // implements a starting state and passes it to a hidden class _MapState
   State<MapToggle> createState() => _MapState();
