@@ -30,6 +30,16 @@
 .pub-cache/
 .pub/
 /build/
+.gradle
+.idea
+*.iml
+build
+local.properties
+.classpath
+.project
+project.properties
+secure.properties
+.DS_Store
 
 # Web related
 lib/generated_plugin_registrant.dart
