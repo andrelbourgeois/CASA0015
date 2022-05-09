@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../src/drawerMenu.dart';
+import '../utils/drawerMenu.dart';
 
 
 class homeScreen extends StatelessWidget {

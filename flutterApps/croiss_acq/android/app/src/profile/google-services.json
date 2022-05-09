@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "565227006204",
+    "firebase_url": "https://key-acre-347214-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "key-acre-347214",
+    "storage_bucket": "key-acre-347214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565227006204:android:5a95f5788171d80f9e8f79",
+        "android_client_info": {
+          "package_name": "com.example.croiss_acq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565227006204-h6i3ilser6qop3dul7th64ebulv7n4v5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtpM-e_l_SRBNVMmg_sGEjRO9LWqMoXlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565227006204-h6i3ilser6qop3dul7th64ebulv7n4v5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

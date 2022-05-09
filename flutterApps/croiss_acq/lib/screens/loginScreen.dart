@@ -1,194 +1,96 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'profileScreen.dart';
-import 'registerScreen.dart';
-import '../src/fire_auth.dart';
-import '../src/validator.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
+import 'package:flutter/material.dart';
+import '../screens/homeScreen.dart';
+
+//code for designing the UI of our text field where the user writes his email id or password
+
+const kTextFieldDecoration = InputDecoration(
+    hintText: 'Enter a value',
+    hintStyle: TextStyle(color: Colors.grey),
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ));
 
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
+final _auth = FirebaseAuth.instance;
+
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-
-  final _emailTextController = TextEditingController();
-  final _passwordTextController = TextEditingController();
-
-  final _focusEmail = FocusNode();
-  final _focusPassword = FocusNode();
-
-  bool _isProcessing = false;
-
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) =>
-              ProfileScreen(
-                user: user,
-              ),
-        ),
-      );
-    }
-
-    return firebaseApp;
-  }
-
+  late String email;
+  late String password;
+  bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _focusEmail.unfocus();
-        _focusPassword.unfocus();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Firebase Authentication'),
-        ),
-        body: FutureBuilder(
-          future: _initializeFirebase(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 24.0),
-                      child: Text(
-                        'Login',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .headline1,
-                      ),
-                    ),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            controller: _emailTextController,
-                            focusNode: _focusEmail,
-                            validator: (value) =>
-                                Validator.validateEmail(
-                                  email: value,
-                                ),
-                            decoration: InputDecoration(
-                              hintText: "Email",
-                              errorBorder: UnderlineInputBorder(
-                                borderRadius: BorderRadius.circular(6.0),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 8.0),
-                          TextFormField(
-                            controller: _passwordTextController,
-                            focusNode: _focusPassword,
-                            obscureText: true,
-                            validator: (value) =>
-                                Validator.validatePassword(
-                                  password: value,
-                                ),
-                            decoration: InputDecoration(
-                              hintText: "Password",
-                              errorBorder: UnderlineInputBorder(
-                                borderRadius: BorderRadius.circular(6.0),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 24.0),
-                          _isProcessing
-                              ? CircularProgressIndicator()
-                              : Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () async {
-                                    _focusEmail.unfocus();
-                                    _focusPassword.unfocus();
-
-                                    if (_formKey.currentState!
-                                        .validate()) {
-                                      setState(() {
-                                        _isProcessing = true;
-                                      });
-
-                                      User? user = await FireAuth
-                                          .signInUsingEmailPassword(
-                                        email: _emailTextController.text,
-                                        password:
-                                        _passwordTextController.text,
-                                      );
-
-                                      setState(() {
-                                        _isProcessing = false;
-                                      });
-
-                                      if (user != null) {
-                                        Navigator.of(context)
-                                            .pushReplacement(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProfileScreen(user: user),
-                                          ),
-                                        );
-                                      }
-                                    }
-                                  },
-                                  child: Text(
-                                    'Sign In',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 24.0),
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            RegisterScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    'Register',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              );
-            }
-
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: ProgressHUD(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    email = value;
+                    //Do something with the user input.
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Enter your email',
+                  )),
+              SizedBox(
+                height: 8.0,
+              ),
+              TextField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    password = value;
+                    //Do something with the user input.
+                  },
+                  decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter your password.')),
+              SizedBox(
+                height: 24.0,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    setState(() {
+                      showSpinner = true;
+                    });
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      if (user != null) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => homeScreen(
+                          title: 'Home',
+                        )));
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  }, child: Text('Log In'),
+              )
+            ],
+          ),
         ),
       ),
     );

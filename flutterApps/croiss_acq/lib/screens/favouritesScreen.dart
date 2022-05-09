@@ -1,6 +1,6 @@
 // implements favourites screen
 import 'package:flutter/material.dart';
-import '../src/drawerMenu.dart';
+import '../utils/drawerMenu.dart';
 
 class favouritesScreen extends StatelessWidget {
   const favouritesScreen({Key? key, required this.title}) : super(key: key);

@@ -1,6 +1,6 @@
 // implements the settings screen
 import 'package:flutter/material.dart';
-import '../src/drawerMenu.dart';
+import '../utils/drawerMenu.dart';
 
 // implements settings screen
 class settingsScreen extends StatelessWidget {

@@ -1,15 +1,16 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'profileScreen.dart';
 import '../src/fire_auth.dart';
 import '../src/validator.dart';
 
-class RegisterScreen extends StatefulWidget {
+class registerScreen extends StatefulWidget {
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _registerScreenState createState() => _registerScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _registerScreenState extends State<registerScreen> {
   final _registerFormKey = GlobalKey<FormState>();
 
   final _nameTextController = TextEditingController();
@@ -126,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         .pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            ProfileScreen(user: user),
+                                            profileScreen(user: user),
                                       ),
                                       ModalRoute.withName('/'),
                                     );
@@ -152,3 +153,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
+ */

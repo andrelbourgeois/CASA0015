@@ -1,11 +1,9 @@
-// validators for each form field
-// will help to check whether the user has entered an
-// inappropriate value and show an error accordingly
 class Validator {
   static String? validateName({required String? name}) {
     if (name == null) {
       return null;
     }
+
     if (name.isEmpty) {
       return 'Name can\'t be empty';
     }
@@ -17,14 +15,14 @@ class Validator {
     if (email == null) {
       return null;
     }
+
     RegExp emailRegExp = RegExp(
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$"
-    );
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
     if (email.isEmpty) {
       return 'Email can\'t be empty';
     } else if (!emailRegExp.hasMatch(email)) {
-      return 'Enter a valid email';
+      return 'Enter a correct email';
     }
 
     return null;
@@ -34,10 +32,11 @@ class Validator {
     if (password == null) {
       return null;
     }
+
     if (password.isEmpty) {
-      return 'Password can\'t be empty.';
+      return 'Password can\'t be empty';
     } else if (password.length < 6) {
-      return 'Password must have at least 6 characters.';
+      return 'Enter a password with length at least 6';
     }
 
     return null;

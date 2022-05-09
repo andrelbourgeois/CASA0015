@@ -1,7 +1,11 @@
 // implements map screen
 // and other map related functions
 import 'package:flutter/material.dart';
-import '../src/drawerMenu.dart';
+import '../utils/drawerMenu.dart';
+
+
+// importing google maps library
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class mapScreen extends StatelessWidget {
   const mapScreen({Key? key, required this.title}) : super(key: key);
