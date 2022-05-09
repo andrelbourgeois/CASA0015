@@ -32,7 +32,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // theme data for the app
       theme: ThemeData(),
-      home: WelcomeScreen(),
+      home: welcomeScreen(),
     );
   }
 }

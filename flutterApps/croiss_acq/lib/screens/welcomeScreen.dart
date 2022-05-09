@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'registrationScreen.dart';
 import 'loginScreen.dart';
 
-class WelcomeScreen extends StatefulWidget {
+class welcomeScreen extends StatefulWidget {
+
   @override
-  _WelcomeScreenState createState() => _WelcomeScreenState();
+  _welcomeScreenState createState() => _welcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _welcomeScreenState extends State<welcomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

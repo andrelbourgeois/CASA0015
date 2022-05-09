@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../screens/profileScreen.dart';
 import '../screens/homeScreen.dart';
 import '../screens/mapScreen.dart';
 import '../screens/favouritesScreen.dart';
 import '../screens/settingsScreen.dart';
 
 
-// implements a navigation drawer to be added to each screen in the app bar
-class drawerMenu extends StatelessWidget {
+class drawerMenu extends StatefulWidget {
   @override
+  _drawerMenuState createState() => _drawerMenuState();
+}
+
+class _drawerMenuState extends State<drawerMenu> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  //signout function
+  signOut() async {
+    await auth.signOut();
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+  @override
+
+
+// implements a navigation drawer to be added to each screen in the app bar
+//class drawerMenu extends StatelessWidget {
+ // @override
   Widget build(BuildContext context) {
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
@@ -95,6 +112,10 @@ class drawerMenu extends StatelessWidget {
               );
             },
           ),
+          ElevatedButton(child: Text('Sign Out'),
+            onPressed: () {
+              signOut();
+            },)
         ],
       ),
     );
