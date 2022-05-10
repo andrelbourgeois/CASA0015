@@ -6,7 +6,6 @@ import '../screens/mapScreen.dart';
 import '../screens/favouritesScreen.dart';
 import '../screens/settingsScreen.dart';
 
-
 class drawerMenu extends StatefulWidget {
   @override
   _drawerMenuState createState() => _drawerMenuState();
@@ -14,17 +13,17 @@ class drawerMenu extends StatefulWidget {
 
 class _drawerMenuState extends State<drawerMenu> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   //signout function
   signOut() async {
     await auth.signOut();
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
+
   @override
-
-
 // implements a navigation drawer to be added to each screen in the app bar
 //class drawerMenu extends StatelessWidget {
- // @override
+  // @override
   Widget build(BuildContext context) {
     return Drawer(
       // Add a ListView to the drawer. This ensures the user can scroll
@@ -36,13 +35,29 @@ class _drawerMenuState extends State<drawerMenu> {
         // children allows the implementation of multiple child elements
         children: [
           // the top of the drawer
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
               // make it white
               color: Colors.white,
             ),
-            // TODO add profile ICON and link to profile page
-            child: Text('I want a profile ICON here'),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const profileScreen(
+                            title: 'Profile',
+                          )),
+                );
+              },
+              child: CircleAvatar(
+                radius: 100,
+                backgroundImage: AssetImage(
+                  'assets/images/croissantLogo.png',
+                ),
+              ),
+            ),
           ),
           // Each ListTile will be a navigation option
           ListTile(
@@ -56,11 +71,10 @@ class _drawerMenuState extends State<drawerMenu> {
                 context,
                 // replaces the screen with a platform-adaptive transition
                 MaterialPageRoute(
-                  // builds the new screen - in this case, the map screen
-                    builder: (context) =>
-                    const homeScreen(
-                      title: 'Home',
-                    )),
+                    // builds the new screen - in this case, the map screen
+                    builder: (context) => const homeScreen(
+                          title: 'Home',
+                        )),
               );
             },
           ),
@@ -75,11 +89,10 @@ class _drawerMenuState extends State<drawerMenu> {
                 context,
                 // replaces the screen with a platform-adaptive transition
                 MaterialPageRoute(
-                  // builds the new screen - in this case, the map screen
-                    builder: (context) =>
-                    const mapScreen(
-                      title: 'Map',
-                    )),
+                    // builds the new screen - in this case, the map screen
+                    builder: (context) => const mapScreen(
+                          title: 'Map',
+                        )),
               );
             },
           ),
@@ -91,10 +104,9 @@ class _drawerMenuState extends State<drawerMenu> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                    const favouritesScreen(
-                      title: 'Favourites',
-                    )),
+                    builder: (context) => const favouritesScreen(
+                          title: 'Favourites',
+                        )),
               );
             },
           ),
@@ -105,17 +117,18 @@ class _drawerMenuState extends State<drawerMenu> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                    const settingsScreen(
-                      title: 'Settings',
-                    )),
+                    builder: (context) => const settingsScreen(
+                          title: 'Settings',
+                        )),
               );
             },
           ),
-          ElevatedButton(child: Text('Sign Out'),
+          ElevatedButton(
+            child: Text('Sign Out'),
             onPressed: () {
               signOut();
-            },)
+            },
+          )
         ],
       ),
     );

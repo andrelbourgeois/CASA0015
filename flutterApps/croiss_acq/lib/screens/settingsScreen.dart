@@ -1,6 +1,7 @@
 // implements the settings screen
 import 'package:flutter/material.dart';
 import '../utils/drawerMenu.dart';
+import '../screens/homeScreen.dart';
 
 // implements settings screen
 class settingsScreen extends StatelessWidget {
@@ -15,7 +16,8 @@ class settingsScreen extends StatelessWidget {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () =>
-                Navigator.of(context).popUntil((route) => route.isFirst),
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (context) => homeScreen(title: 'homeScreen',)), (route) => false)
           ),
           backgroundColor: Color(0xffffffff),
           iconTheme: IconThemeData(color: Colors.black),

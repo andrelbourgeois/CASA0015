@@ -2,6 +2,7 @@
 // and other map related functions
 import 'package:flutter/material.dart';
 import '../utils/drawerMenu.dart';
+import '../screens/homeScreen.dart';
 
 
 // importing google maps library
@@ -23,7 +24,10 @@ class mapScreen extends StatelessWidget {
             // initiates action when pressed
             onPressed: () =>
             // pops screens from the stack until we reach the first screen
-            Navigator.of(context).popUntil((route) => route.isFirst),
+            //Navigator.of(context).popUntil((route) => route.isFirst),
+            //Navigator.pop(context)
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                builder: (context) => homeScreen(title: 'homeScreen',)), (route) => false)
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),

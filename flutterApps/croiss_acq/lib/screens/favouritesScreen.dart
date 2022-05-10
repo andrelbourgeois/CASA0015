@@ -1,6 +1,7 @@
 // implements favourites screen
 import 'package:flutter/material.dart';
 import '../utils/drawerMenu.dart';
+import '../screens/homeScreen.dart';
 
 class favouritesScreen extends StatelessWidget {
   const favouritesScreen({Key? key, required this.title}) : super(key: key);
@@ -14,7 +15,8 @@ class favouritesScreen extends StatelessWidget {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () =>
-                Navigator.of(context).popUntil((route) => route.isFirst),
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (context) => homeScreen(title: 'homeScreen',)), (route) => false)
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
