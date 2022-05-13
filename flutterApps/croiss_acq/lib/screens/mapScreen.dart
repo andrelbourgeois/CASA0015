@@ -27,7 +27,7 @@ class mapScreen extends StatelessWidget {
             //Navigator.of(context).popUntil((route) => route.isFirst),
             //Navigator.pop(context)
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                builder: (context) => homeScreen(title: 'homeScreen',)), (route) => false)
+                builder: (context) => homeScreen()), (route) => false)
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),

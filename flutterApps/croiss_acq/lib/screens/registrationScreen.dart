@@ -76,9 +76,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
                     if (newUser != null) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => homeScreen(
-                        title: 'Home',
-                      )));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => homeScreen()));
                     }
                   } catch (e) {
                     print(e);

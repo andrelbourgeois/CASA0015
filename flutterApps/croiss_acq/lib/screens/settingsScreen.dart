@@ -17,7 +17,7 @@ class settingsScreen extends StatelessWidget {
             icon: Icon(Icons.arrow_back),
             onPressed: () =>
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                    builder: (context) => homeScreen(title: 'homeScreen',)), (route) => false)
+                    builder: (context) => homeScreen()), (route) => false)
           ),
           backgroundColor: Color(0xffffffff),
           iconTheme: IconThemeData(color: Colors.black),

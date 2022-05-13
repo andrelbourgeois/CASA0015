@@ -5,6 +5,7 @@ import '../screens/homeScreen.dart';
 import '../screens/mapScreen.dart';
 import '../screens/favouritesScreen.dart';
 import '../screens/settingsScreen.dart';
+import "../screens/welcomeScreen.dart";
 
 class drawerMenu extends StatefulWidget {
   @override
@@ -17,7 +18,9 @@ class _drawerMenuState extends State<drawerMenu> {
   //signout function
   signOut() async {
     await auth.signOut();
-    Navigator.of(context).popUntil((route) => route.isFirst);
+    Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => welcomeScreen())
+    );
   }
 
   @override
@@ -46,8 +49,7 @@ class _drawerMenuState extends State<drawerMenu> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const profileScreen(
-                            title: 'Profile',
+                      builder: (context) => profileScreen(
                           )),
                 );
               },
@@ -72,9 +74,7 @@ class _drawerMenuState extends State<drawerMenu> {
                 // replaces the screen with a platform-adaptive transition
                 MaterialPageRoute(
                     // builds the new screen - in this case, the map screen
-                    builder: (context) => const homeScreen(
-                          title: 'Home',
-                        )),
+                    builder: (context) => homeScreen()),
               );
             },
           ),
