@@ -44,6 +44,10 @@ secure.properties
 /flutterApps/croiss_acq/android/app/src/main/AndroidManifest.xml
 /flutterApps/croiss_acq/lib/utils/secrets.dart
 
+/flutterApps/croiss_acq/android/app/src/main/google-services.json
+/flutterApps/croiss_acq/android/app/src/debug/google-services.json
+/flutterApps/croiss_acq/android/app/src/profile/google-services.json
+
 # Web related
 lib/generated_plugin_registrant.dart
 

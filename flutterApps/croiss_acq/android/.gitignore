@@ -8,6 +8,10 @@ GeneratedPluginRegistrant.java
 /flutterApps/croiss_acq/android/app/src/main/AndroidManifest.xml
 /flutterApps/croiss_acq/lib/utils/secrets.dart
 
+/flutterApps/croiss_acq/android/app/src/main/google-services.json
+/flutterApps/croiss_acq/android/app/src/debug/google-services.json
+/flutterApps/croiss_acq/android/app/src/profile/google-services.json
+
 # Remember to never publicly share your keystore.
 # See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
 key.properties
