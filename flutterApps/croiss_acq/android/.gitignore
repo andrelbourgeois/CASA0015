@@ -5,8 +5,11 @@ gradle-wrapper.jar
 /gradlew.bat
 /local.properties
 GeneratedPluginRegistrant.java
+
 /flutterApps/croiss_acq/android/app/src/main/AndroidManifest.xml
 /flutterApps/croiss_acq/lib/utils/secrets.dart
+
+/flutterApps/croiss_acq/lib/firebase_options.dart
 
 /flutterApps/croiss_acq/android/app/google-services.json
 /flutterApps/croiss_acq/android/app/src/main/google-services.json
