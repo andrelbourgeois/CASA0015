@@ -1,7 +1,12 @@
-// importing the dart material library
+// importing the dart foundation + material library
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// importing firebase libraries
 import 'package:firebase_core/firebase_core.dart';
+
+// importing google maps libraries
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // importing provider library (what is provider?)
 import 'package:provider/provider.dart';
@@ -12,6 +17,9 @@ import 'screens/welcomeScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+  }
   // i think this runs the app?
   runApp(const App());
 }

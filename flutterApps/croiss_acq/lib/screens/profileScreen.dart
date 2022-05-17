@@ -1,11 +1,9 @@
 // implements the profile screen
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
 import '../utils/drawerMenu.dart';
 import '../screens/homeScreen.dart';
-
-// User? loggedinUser;
+import '../screens/welcomeScreen.dart';
 
 
 // implements settings screen
@@ -14,26 +12,15 @@ class profileScreen extends StatefulWidget {
   _profileScreenState createState() => _profileScreenState();
 }
 class _profileScreenState extends State<profileScreen> {
-  /*
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
-  void initState() {
-    super.initState();
-    getCurrentUser();
+  //signout function
+  signOut() async {
+    await auth.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => welcomeScreen())
+    );
   }
-
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedinUser = user;
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-   */
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +54,12 @@ class _profileScreenState extends State<profileScreen> {
               height: 20.0,
             ),
             Text('EMAIL: ${loggedinUser?.email}',),
+            ElevatedButton(
+              child: Text('Sign Out'),
+              onPressed: () {
+                signOut();
+              },
+            )
           ]),
         ));
   }

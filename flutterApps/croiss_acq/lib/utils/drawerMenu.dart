@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/profileScreen.dart';
 import '../screens/homeScreen.dart';
 import '../screens/mapScreen.dart';
 import '../screens/favouritesScreen.dart';
 import '../screens/settingsScreen.dart';
-import "../screens/welcomeScreen.dart";
 
 class drawerMenu extends StatefulWidget {
   @override
@@ -13,15 +11,6 @@ class drawerMenu extends StatefulWidget {
 }
 
 class _drawerMenuState extends State<drawerMenu> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
-  //signout function
-  signOut() async {
-    await auth.signOut();
-    Navigator.pushReplacement(
-      context, MaterialPageRoute(builder: (context) => welcomeScreen())
-    );
-  }
 
   @override
 // implements a navigation drawer to be added to each screen in the app bar
@@ -90,8 +79,7 @@ class _drawerMenuState extends State<drawerMenu> {
                 // replaces the screen with a platform-adaptive transition
                 MaterialPageRoute(
                     // builds the new screen - in this case, the map screen
-                    builder: (context) => const mapScreen(
-                          title: 'Map',
+                    builder: (context) => mapScreen(
                         )),
               );
             },
@@ -123,12 +111,6 @@ class _drawerMenuState extends State<drawerMenu> {
               );
             },
           ),
-          ElevatedButton(
-            child: Text('Sign Out'),
-            onPressed: () {
-              signOut();
-            },
-          )
         ],
       ),
     );

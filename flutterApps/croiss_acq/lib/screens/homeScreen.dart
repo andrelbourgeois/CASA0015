@@ -56,7 +56,7 @@ class _homeScreenState extends State<homeScreen> {
               child: (Column(children: [
                 Text('Home Page Coming Soon'),
                 ElevatedButton(
-                  child: Text('Press me!'),
+                  child: Text('Find me a croissant!'),
                   onPressed: () {
                     print('Hello');
                   },
