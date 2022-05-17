@@ -316,7 +316,7 @@ class mapScreenState extends State<mapScreen> {
     _getCurrentLocation();
   }
 
-  // Completer<GoogleMapController> _controller = Completer();
+  Completer<GoogleMapController> _controller = Completer();
 
   @override
   Widget build(BuildContext context) {
@@ -538,12 +538,20 @@ class mapScreenState extends State<mapScreen> {
         ),
         // TODO add button to find croissant - point to specific bakery
 
-        //ElevatedButton(
+        // ElevatedButton(
         // onPressed: (_goToTheLake), child: Text('To the lake!'))
       ]),
     );
   }
+  /*
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+
+   */
 }
+
 
 /*
 // implements a toggle switch widget for the map widget
