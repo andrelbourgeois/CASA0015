@@ -1,3 +1,9 @@
+/*
+Code for this file was modified from similar work by Harsh Lohia in 2021
+Article - https://medium.com/code-for-cause/flutter-registration-login-using-firebase-5ada3f14c066
+GitHub - https://github.com/harshlohia11/flutter-signup-login
+ */
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
@@ -13,11 +19,11 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+    borderSide: BorderSide(color: Colors.black, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    borderSide: BorderSide(color: Colors.black, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
@@ -68,6 +74,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 24.0,
               ),
               ElevatedButton(
+                child: Text('Register'),
                 onPressed: () async {
                   setState(() {
                     showSpinner = true;
@@ -84,8 +91,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   setState(() {
                     showSpinner = false;
                   });
-                }, child: Text('Log In'),
-              )
+                },style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.black),
+              ),
+              ),
             ],
           ),
         ),

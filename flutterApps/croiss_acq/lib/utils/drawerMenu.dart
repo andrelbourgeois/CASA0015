@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../screens/profileScreen.dart';
 import '../screens/homeScreen.dart';
 import '../screens/mapScreen.dart';
-import '../screens/favouritesScreen.dart';
-import '../screens/settingsScreen.dart';
+// import '../screens/favouritesScreen.dart';
+// import '../screens/settingsScreen.dart';
 
 class drawerMenu extends StatefulWidget {
   @override
@@ -43,10 +43,8 @@ class _drawerMenuState extends State<drawerMenu> {
                 );
               },
               child: CircleAvatar(
-                radius: 100,
-                backgroundImage: AssetImage(
-                  'assets/images/croissantLogo.png',
-                ),
+                radius: 200,
+                backgroundColor: Colors.black,
               ),
             ),
           ),
@@ -85,7 +83,7 @@ class _drawerMenuState extends State<drawerMenu> {
             },
           ),
           // for comments on remaining list tiles, see above
-          ListTile(
+          /* ListTile(
             title: const Text('Favourites'),
             onTap: () {
               Navigator.pop(context);
@@ -111,6 +109,8 @@ class _drawerMenuState extends State<drawerMenu> {
               );
             },
           ),
+
+           */
         ],
       ),
     );

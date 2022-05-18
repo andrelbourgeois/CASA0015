@@ -1,3 +1,10 @@
+/*
+Code for this file was modified from similar work by Souvik Biswas in 2021
+Article - https://blog.logrocket.com/implementing-firebase-authentication-in-a-flutter-app/#register-a-new-user
+GitHub - https://github.com/sbis04/flutter-authentication
+ */
+
+// implements validation for user information
 class Validator {
   static String? validateName({required String? name}) {
     if (name == null) {

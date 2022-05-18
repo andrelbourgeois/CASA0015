@@ -8,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 // importing google maps libraries
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-// importing provider library (what is provider?)
+// importing provider library
 import 'package:provider/provider.dart';
 
 // importing misc files - firebase options, auth, & widgets

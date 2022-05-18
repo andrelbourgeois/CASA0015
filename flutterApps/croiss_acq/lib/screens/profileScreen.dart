@@ -46,10 +46,8 @@ class _profileScreenState extends State<profileScreen> {
             ),
             CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage(
-                'assets/images/croissantLogo.png',
+              backgroundColor: Colors.black,
               ),
-            ),
             SizedBox(
               height: 20.0,
             ),
@@ -58,7 +56,9 @@ class _profileScreenState extends State<profileScreen> {
               child: Text('Sign Out'),
               onPressed: () {
                 signOut();
-              },
+              },style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black),
+            ),
             )
           ]),
         ));

@@ -1,3 +1,9 @@
+/*
+Code for this file was modified from similar work by Harsh Lohia in 2021
+Article - https://medium.com/code-for-cause/flutter-registration-login-using-firebase-5ada3f14c066
+GitHub - https://github.com/harshlohia11/flutter-signup-login
+ */
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +19,11 @@ const kTextFieldDecoration = InputDecoration(
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+      borderSide: BorderSide(color: Colors.black, width: 1.0),
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+      borderSide: BorderSide(color: Colors.black, width: 2.0),
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
     ));
 
@@ -48,7 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   onChanged: (value) {
                     email = value;
-                    //Do something with the user input.
                   },
                   decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your email',
@@ -61,7 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   onChanged: (value) {
                     password = value;
-                    //Do something with the user input.
                   },
                   decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter your password.')),
@@ -69,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24.0,
               ),
               ElevatedButton(
+                  child: Text('Log In'),
                   onPressed: () async {
                     setState(() {
                       showSpinner = true;
@@ -85,8 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() {
                       showSpinner = false;
                     });
-                  }, child: Text('Log In'),
-              )
+                  },style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.black),
+              ),
+              ),
             ],
           ),
         ),

@@ -1,4 +1,10 @@
 /*
+Code for this file was modified from similar work by Souvik Biswas in 2021
+Article - https://blog.logrocket.com/implementing-firebase-authentication-in-a-flutter-app/#register-a-new-user
+GitHub - https://github.com/sbis04/flutter-authentication
+ */
+
+/*
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'profileScreen.dart';

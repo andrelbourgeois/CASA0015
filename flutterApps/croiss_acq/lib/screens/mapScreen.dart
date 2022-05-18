@@ -1,15 +1,26 @@
+/*
+Code for this file was modified from similar work by Souvik Biswas in 2021
+Article - https://blog.codemagic.io/creating-a-route-calculator-using-google-maps/
+GitHub - https://github.com/sbis04/flutter_maps
+ */
+
 // implements map screen
 // and other map related functions
 import 'dart:async';
 // importing math
 import 'dart:math';
 
+// importing material
 import 'package:flutter/material.dart';
 
+// import my API
 import '../utils/secrets.dart'; // Stores the Google Maps API Key
+
+//importing mapping and routing functionality
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+
 import '../utils/drawerMenu.dart';
 import '../screens/homeScreen.dart';
 
@@ -316,7 +327,7 @@ class mapScreenState extends State<mapScreen> {
     _getCurrentLocation();
   }
 
-  Completer<GoogleMapController> _controller = Completer();
+  // Completer<GoogleMapController> _controller = Completer();
 
   @override
   Widget build(BuildContext context) {
@@ -325,7 +336,7 @@ class mapScreenState extends State<mapScreen> {
     var height = MediaQuery
         .of(context)
         .size
-        .height - 200;
+        .height - 370;
     var width = MediaQuery
         .of(context)
         .size
@@ -375,11 +386,45 @@ class mapScreenState extends State<mapScreen> {
             },
           ),
         ),
+        SafeArea(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
+              child: ClipOval(
+                child: Material(
+                  color: Colors.orange.shade100, // button color
+                  child: InkWell(
+                    splashColor: Colors.orange, // inkwell color
+                    child: SizedBox(
+                      width: 56,
+                      height: 56,
+                      child: Icon(Icons.my_location),
+                    ),
+                    onTap: () {
+                      mapController.animateCamera(
+                        CameraUpdate.newCameraPosition(
+                          CameraPosition(
+                            target: LatLng(
+                              _currentPosition.latitude,
+                              _currentPosition.longitude,
+                            ),
+                            zoom: 18.0,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
         // Show the place input fields & button for
         // showing the route
         SafeArea(
           child: Align(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Container(
@@ -399,7 +444,7 @@ class mapScreenState extends State<mapScreen> {
                         'Places',
                         style: TextStyle(fontSize: 20.0),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 20),
                       _textField(
                           label: 'Start',
                           hint: 'Choose starting point',
@@ -496,40 +541,6 @@ class mapScreenState extends State<mapScreen> {
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        SafeArea(
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
-              child: ClipOval(
-                child: Material(
-                  color: Colors.orange.shade100, // button color
-                  child: InkWell(
-                    splashColor: Colors.orange, // inkwell color
-                    child: SizedBox(
-                      width: 56,
-                      height: 56,
-                      child: Icon(Icons.my_location),
-                    ),
-                    onTap: () {
-                      mapController.animateCamera(
-                        CameraUpdate.newCameraPosition(
-                          CameraPosition(
-                            target: LatLng(
-                              _currentPosition.latitude,
-                              _currentPosition.longitude,
-                            ),
-                            zoom: 18.0,
-                          ),
-                        ),
-                      );
-                    },
                   ),
                 ),
               ),
